@@ -44,6 +44,7 @@ in
 
 	# fonts
 	home.file.".local/share/fonts/MonacoLigaturizedNerdFont".source = ./config/fonts/MonacoLigaturizedNerdFont;
+	home.file.".local/share/fonts/AppleColorEmoji.ttf".source = ./config/fonts/AppleColorEmoji-Linux.ttf;
 
     home.packages = with pkgs; [
         neovim

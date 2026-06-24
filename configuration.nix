@@ -79,9 +79,21 @@
 		enableSSHSupport = true;
 	};
 
-	fonts.packages = with pkgs; [
-		nerd-fonts.fira-code
-	];
+	fonts = {
+		packages = with pkgs; [
+			nerd-fonts.fira-code
+		];
+
+		fontconfig = {
+			enable = true;
+			defaultFonts = {
+				serif = ["Helvetica"];
+				sansSerif = ["Helvetica"];
+				monospace = ["MonacoLigaturized Nerd Font"];
+				emoji = ["Apple Color Emoji"];
+			};
+		};
+	};
 
 	# List services that you want to enable:
 

@@ -18,9 +18,9 @@ hl.monitor({
 ---- MY PROGRAMS ----
 ---------------------
 
-local terminal    = "ghostty"
+local terminal    = "alacritty"
 local fileManager = "thunar"
-local menu        = "wofi -show run"
+local menu        = "wofi --show run"
 
 
 -------------------
@@ -159,7 +159,7 @@ hl.animation({ leaf = "zoomFactor",    enabled = true, speed = 7,    bezier = "q
 
 hl.window_rule({
     name    = "opaque-term",
-    match   = { class = "^(Alacritty|Ghostty|ghostty)$" },
+    match   = { class = "(Alacritty|Ghostty|ghostty)" },
     opacity = "0.89 override 0.8 override",
 })
 
@@ -240,15 +240,20 @@ hl.bind(mainMod .. " + R",         hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P",         hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + W",         hl.dsp.layout("togglesplit"))
 
--- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
-hl.bind(mainMod .. " + H",     hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + J",     hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + K",     hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + L",     hl.dsp.focus({ direction = "down" }))
+-- -- Move focus with mainMod + arrow keys
+-- hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
+-- hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
+-- hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
+-- hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+-- hl.bind(mainMod .. " + H",     hl.dsp.focus({ direction = "left" }))
+-- hl.bind(mainMod .. " + J",     hl.dsp.focus({ direction = "right" }))
+-- hl.bind(mainMod .. " + K",     hl.dsp.focus({ direction = "up" }))
+-- hl.bind(mainMod .. " + L",     hl.dsp.focus({ direction = "down" }))
+
+hl.bind(mainMod .. " + O", function()
+    hl.dispatch(hl.dsp.window.cycle_next())
+    hl.dispatch(hl.dsp.window.bring_to_top())
+end)
 
 hl.bind(mainMod .. " + U", hl.dsp.exec_cmd("grim ~/Pictures/screen-$(date +%F-%s).png"))
 
