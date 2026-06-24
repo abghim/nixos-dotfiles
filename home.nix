@@ -56,5 +56,6 @@ in
         fortune
         lolcat
 		fastfetch
+		thunar
     ];
 }

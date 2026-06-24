@@ -5,4 +5,4 @@ SETUVAR _fisher_jorgebucaran_2F_autopair_2E_fish_files:\x7e/\x2econfig/fish/func
 SETUVAR _fisher_plugins:jorgebucaran/autopair\x2efish
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_greeting:\x1d
-SETUVAR fish_user_paths:/home/aiden/\x2ecargo/bin\x1e/home/dad/\x2ecargo/bin\x1e/home/dad/\x2elocal/bin\x1e/opt/local/bin\x1e/Users/aiden/\x2ecargo/bin\x1e/Users/aiden/\x2elocal/bin\x1e/Users/aiden/bin\x1e/opt/homebrew/opt/coreutils/libexec/gnubin\x1e/opt/homebrew/sbin\x1e/opt/homebrew/bin\x1e/opt/pkg/sbin\x1e/opt/pkg/bin
+SETUVAR fish_user_paths:/home/aiden/\x2elocal/bin\x1e/home/aiden/\x2ecargo/bin\x1e/home/dad/\x2ecargo/bin\x1e/home/dad/\x2elocal/bin\x1e/opt/local/bin\x1e/Users/aiden/\x2ecargo/bin\x1e/Users/aiden/\x2elocal/bin\x1e/Users/aiden/bin\x1e/opt/homebrew/opt/coreutils/libexec/gnubin\x1e/opt/homebrew/sbin\x1e/opt/homebrew/bin\x1e/opt/pkg/sbin\x1e/opt/pkg/bin
