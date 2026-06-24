@@ -45,6 +45,7 @@ in
 	# fonts
 	home.file.".local/share/fonts/MonacoLigaturizedNerdFont".source = ./config/fonts/MonacoLigaturizedNerdFont;
 	home.file.".local/share/fonts/AppleColorEmoji.ttf".source = ./config/fonts/AppleColorEmoji-Linux.ttf;
+	home.file.".local/share/fonts/Helvetica".source = ./config/fonts/Helvetica;
 
     home.packages = with pkgs; [
         neovim
@@ -65,5 +66,6 @@ in
 		fastfetch
 		thunar
 		alacritty
+		zip unzip
     ];
 }
