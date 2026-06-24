@@ -1,0 +1,6 @@
+[submodule "config/hallavim"]
+	path = config/hallavim
+	url = https://github.com/abghim/hallavim
+[submodule "config/nvim"]
+	path = config/nvim
+	url = https://github.com/abghim/hallavim

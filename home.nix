@@ -10,6 +10,7 @@ let
         hypr = "hypr";
         eza = "eza";
         quickshell = "quickshell";
+	nvim = "nvim";
     };
 
 in
@@ -48,11 +49,11 @@ in
         wofi
         eza
         quickshell
+		coreutils
+		gnumake
         rustup
 	    zoxide
         fortune
         lolcat
-        
     ];
-	
 }
