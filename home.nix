@@ -22,6 +22,7 @@ in
         userName = "Aiden Ghim";
         userEmail = "aiden.bj.ghim@gmail.com";
         extraConfig = {
+			credential.helper = "store";
             init.defaultBranch = "master";
             pull.rebase = true;
         };
