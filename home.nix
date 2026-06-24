@@ -55,5 +55,6 @@ in
 	    zoxide
         fortune
         lolcat
+		fastfetch
     ];
 }
