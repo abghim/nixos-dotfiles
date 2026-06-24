@@ -35,10 +35,14 @@ in
         };
     };
 
+	# dotfile symlinking
     xdg.configFile = builtins.mapAttrs (name: subpath: {
             source = create_symlink "${dotfiles}/${subpath}";
             recursive = true;
     }) configs;
+
+	# fonts
+	home.file.".local/share/fonts/MonacoLigaturizedNerdFont".source = ./config/fonts/MonacoLigaturizedNerdFont;
 
     home.packages = with pkgs; [
         neovim
