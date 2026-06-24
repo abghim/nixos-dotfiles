@@ -19,8 +19,9 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.j
-font-family = Monaco Nerd Font
+font-family = "MonacoLigaturized Nerd Font"
 font-size = 16
+font-style = Regular
 # window-padding-x = 2
 #
 # # Spacing around the equals sign does not matter.

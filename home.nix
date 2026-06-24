@@ -10,7 +10,8 @@ let
         hypr = "hypr";
         eza = "eza";
         quickshell = "quickshell";
-	nvim = "nvim";
+		nvim = "nvim";
+		alacritty = "alacritty";
     };
 
 in
@@ -62,5 +63,6 @@ in
         lolcat
 		fastfetch
 		thunar
+		alacritty
     ];
 }
