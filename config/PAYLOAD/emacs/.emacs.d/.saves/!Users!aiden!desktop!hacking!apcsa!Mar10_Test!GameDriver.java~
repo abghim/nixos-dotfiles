@@ -1,0 +1,21 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+public class GameDriver {
+    public static void main(String[] args) {
+	Scanner scn = new Scanner(System.in);
+	
+	System.out.println("Hello adventurer, what is thy name? ");
+	String name = scn.nextLine();
+	System.out.println("How many rows in the grid? ");
+	int row = GameLogic.bndScn(0, -1);
+
+	TreasureBoard bd = new TreasureBoard(row);
+
+	int gs = GameLogic.playGame(bd);
+
+	System.out.println("Congratulations, " + name+"! You have finished in "+gs+" guesses.");
+	bd.printBoard();
+	
+    }
+}

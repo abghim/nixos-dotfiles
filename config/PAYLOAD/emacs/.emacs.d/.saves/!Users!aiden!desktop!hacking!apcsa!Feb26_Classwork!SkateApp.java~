@@ -1,0 +1,17 @@
+public class SkateApp {
+    public static boolean isProLevel(int n) {
+	return n==10;
+    }
+
+    
+    
+    public static void main(String[]) {
+	Skateboarder MrTian = new Skateboarder("Mr. David Tian", 10);
+	System.out.println(MrTian.name + " is an "+MrTian.describeSkill());
+
+	if (isProLevel(MrTian.skillLevel)) System.out.println("He is a PRO!!");
+
+	
+    }
+}
+

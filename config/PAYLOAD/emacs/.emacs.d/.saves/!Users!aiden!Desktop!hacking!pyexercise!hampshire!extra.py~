@@ -1,0 +1,53 @@
+table = [#a  b      c       d
+    [(1,4), (2,4), (3,1), (4,3)], # A
+    [(4,1), (1,3), (3,3), (2,2)], # B
+    [(1,2), (4,1), (2,2), (3,4)], # C
+    [(3,3), (2,2), (1,4), (4,1)] # D
+]
+
+table2 = table
+
+def favorite(coach):
+    cid = ['A', 'B', 'C', 'D'].index(coach)
+
+    target = 0
+    for ranking, k in table2[cid]:
+        if ranking < table2[cid][target][0]:
+            target = table2[cid].index((ranking, k))
+
+    return ['a', 'b','c','d'][target]
+
+def pick(call, player):
+    options = []
+    for c, p in call:
+        if p == player:
+            options.append(c)
+    if len(options)==0:
+        return None
+    pick = options[0]
+    for c in options:
+        if table2[['A', 'B','C','D'].index(c)][['a','b','c','d'].index(player)][1] > table2[['A', 'B','C','D'].index(pick)][['a','b','c','d'].index(player)][1]:
+            pick = c
+
+    options.remove(pick)
+    for c in options:
+        table2[['A','B','C','D'].index(c)][['a','b','c','d'].index(player)][0] = 67
+    
+    return (pick, options)
+
+lovecall = {}
+while True:
+    rejections = []
+    for coach in ['A', 'B', 'C', 'D']:
+        lovecall[coach] = favorite(coach)
+    for player in ['a','b','c','d']:
+        pick, rejects = pick(lovecall, player)
+        rejections.extend(rejects)
+
+    for c, p in lovecall:
+        print(f"{c} => {p}", ("(X)" if c in rejections else ""))
+    if len(rejections) == 0:
+        break
+        
+    
+

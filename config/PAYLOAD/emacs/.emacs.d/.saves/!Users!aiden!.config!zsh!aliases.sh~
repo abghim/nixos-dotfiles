@@ -1,0 +1,44 @@
+alias top=btop
+alias sv=cmatrix
+alias bigbang='ffplay /Users/aiden/Desktop/hacking/draul/static/downloads/V_VWqxvBQKwKQ.mp4'
+alias wtf="curl https://www.wtfpl.net/txt/copying/"
+alias snake=nsnake
+alias pacman=myman
+alias tetris=yetris
+alias spaceinvaders=ninvaders
+alias wolf="~/Desktop/hacking/git_tryouts/WolframLanguageForJupyter/configure-jupyter.wls add"
+alias vi="nvim"
+alias e="zed"
+alias gcc="/opt/homebrew/bin/gcc-15"
+alias codium=/Users/aiden/Applications/VSCodium.app/Contents/Resources/app/bin/codium
+alias code=/Users/aiden/Applications/VSCodium.app/Contents/Resources/app/bin/codium
+alias nano="/opt/homebrew/bin/nano"
+alias nvim-plug="vi ~/.config/nvim/lua/plugins.lua"
+alias tmain="tmux new -s main && tmux a -t main"
+alias brewlist="brew list --formula | xargs -n1 -P8 -I {}     sh -c \"brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'\" |     sort -h -r -k2 - | column -t"
+alias dme="~/.doom/bin/doom emacs"
+alias cl=clear
+alias countcmds='history | awk "{count[$2]++} END {for (w in count) print w, count[w]}\" | sort -nk2'
+alias launchpad='cd /System/Applications'
+alias ll='ls -l -a -h'
+alias py='python3'
+alias python='python3'
+alias hack='cd ~/desktop/hacking'
+alias bc="bc --mathlib"
+alias csdl='clang $(sdl2-config --libs --cflags)'
+alias git-restore='echo "⚠️    Use with caution! Instead, stash or commit your changes!" && false'
+alias git-checkout='echo "⚠️    Did you mean git switch? Be careful!" && false'
+alias git-reset='echo "⚠️  git reset can be destructive. Use --soft or --mixed with care." && false'
+alias hanja="python3 -u /Users/aiden/Desktop/hacking/pyexercise/hanja.py"
+alias yt="/Users/aiden/desktop/hacking/drauls/yt-dlp/yt-dlp.sh"
+alias ws=wolframscript
+alias mg=mgx
+eval $(thefuck --alias)
+alias rtk="dosbox-x ~/Virtual/assets/tk3"
+
+alias nvchad="NVIM_APPNAME=nvim-lazyvim nvim"
+alias nvd="neovide &"
+
+lxl() {
+    $HOME/Applications/Lite\ XL.app/Contents/MacOS/lite-xl $@ &
+}

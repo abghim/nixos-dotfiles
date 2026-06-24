@@ -1,0 +1,22 @@
+from intertools import permutations
+
+def get_teams(l: list):
+    teams = []
+    team = []
+    for i,hiker in enumerate(l):
+        if len(team)==0:
+            team.append(hiker)
+        elif hiker<team[-1]:
+            team.append(hiker)
+        else:
+            teams.append(team.copy())
+            team = []
+            team.append(hiker)
+    teams.append(team)
+    return teams 
+        
+def mix(n):
+
+    
+# hiking --->> that way
+print([get_teams([4, 3, 2, 1])])

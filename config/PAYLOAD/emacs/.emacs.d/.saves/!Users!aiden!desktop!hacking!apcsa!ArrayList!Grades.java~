@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Grades {
+    public static void main(String[] args) {
+	ArrayList<Integer> grades = new ArrayList<Integer>();
+
+	Scanner scanner = new Scanner(System.in);
+	int input = 0;
+	while ((input = scanner.nextInt()) != -1) {
+	    grades.add(input);
+	}
+
+	int sum = 0;
+	for (int i=0; i<grades.size(); i++) {
+	    sum += grades.get(i);
+	} System.out.println( (double)sum / grades.size());
+
+    }
+}

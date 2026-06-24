@@ -1,0 +1,17 @@
+public class StudentDriver {
+    public static void main(String s[]) {
+	StudentLogic Alex = new StudentLogic(3.2);
+	StudentLogic Minji = new StudentLogic(3.8);
+
+	System.out.println(Alex.isHonorRoll());
+	System.out.println(Minji.isHonorRoll());
+
+	StudentHelper helper = new StudentHelper();
+
+	helper.setGpa(3.6, Alex);
+
+	System.out.println(Alex.isHonorRoll());
+	System.out.println(Minji.isHonorRoll());
+
+    }
+}

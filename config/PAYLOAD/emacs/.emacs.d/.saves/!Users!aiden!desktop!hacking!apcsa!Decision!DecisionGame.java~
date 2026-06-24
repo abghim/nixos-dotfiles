@@ -1,0 +1,40 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+public class DecisionGame {
+    public static void main(String[] args) {
+	Scanner scn = new Scanner(System.in);
+
+	System.out.println("Type: age, height, num btw 1-100, radius, name");
+	int age = scn.nextInt();
+	double height = scn.nextDouble();
+	int num = scn.nextInt();
+
+	double radius = scn.nextDouble();
+	String name = scn.nextLine();
+
+	if (age <13) System.out.println("Child");
+	else if (age<18) System.out.println("Teen");
+	else if (age<65) System.out.println("Adult");
+	else System.out.println("Senior");
+
+	if (age>=18) {
+	    System.out.println(((height>=180) ? "Tall" : "Average"));
+	} else {
+	    System.out.println("Not adult");
+	}
+
+	int a;
+
+	if ((a = (int) (Math.random()*100)) == num){if(a>num) System.out.println("Bigger");
+	    else System.out.println("Smaller");}
+
+	System.out.println(Math.max(a,num));
+	System.out.println(Math.min(a,num));
+
+	System.out.println(Math.PI*radius*radius);
+
+
+    }
+}	
+    

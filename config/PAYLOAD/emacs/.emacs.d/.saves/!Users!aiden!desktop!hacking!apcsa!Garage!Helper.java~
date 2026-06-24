@@ -1,0 +1,19 @@
+public class Helper {
+    private double hours;
+    private double paid;
+
+    public String status() {
+	if (paid>=hours*2.5) {
+	    return "Paid";
+	} else if (paid >= 1.25*hours) {
+	    return "Underpaid";
+	} else {
+	    return "Violation";
+	}
+    }
+
+    public Helper(double hours, double paid) {
+	this.hours= hours;
+	this.paid = paid;
+    }
+}

@@ -1,0 +1,63 @@
+inherits = "default"
+
+"ui.background" = { bg = "none" } 
+
+"attribute"                 = "attribute"
+"property"                  = "property"
+"namespace"                 = "namespace"
+"type"                      = "type"
+"tag"                       = "tag"
+"type.builtin"              = "type"
+"storage.type"              = "keyword"
+"keyword.storage.type"      = "keyword"
+
+"variable"                      = { fg = "fg" }
+"variable.parameter"            = { fg = "fg" }
+"variable.builtin"              = { fg = "fg" }
+"operator"                      = { fg = "fg" }
+
+"function"                  = "function"
+"function.macro"            = "preproc"
+"constructor"               = "function"
+
+"keyword"                   = "keyword"
+"keyword.directive"         = "keyword"
+
+"constant"                  = "constant"
+"constant.numeric"          = "number"
+"number"                    = "number"
+
+"string"                    = "string"
+"string.escape"             = "string_escape"
+
+"comment"                   = "comment"
+"comment.documentation"     = "comment_doc"
+
+[palette]
+bg            = "#14191f"
+fg            = "#ffffff"
+bg_dark       = "#161b22"
+bg_high       = "#333333"
+gray          = "#484f58"
+
+attribute     = "#ffffff"
+property      = "#ffffff"
+
+comment       = "#54846B"
+comment_doc   = "#5C9FB2"
+
+constant      = "#94dff7"
+number        = "#94dff7"
+
+preproc       = "#f79652"
+
+keyword       = "#f79652"
+tag           = "#f79652"
+
+function      = "#cabbed"
+
+type          = "#f7b5c7"
+namespace     = "#f7b5c7"
+
+string        = "#94dff7"
+string_escape = "#E3A6B7"

@@ -1,0 +1,9 @@
+public class Skateboarder {
+    public int skillLevel;
+    public String name;;
+
+    public Skateboarder (String n, int d) {
+	skillLevel = d;
+	name = n;
+    }
+}

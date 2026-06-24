@@ -1,0 +1,120 @@
+unbind r
+bind r source-file ~/.tmux.conf
+
+set -g prefix C-q
+setw -g mode-keys vi
+
+set -g mouse on
+
+set -g default-shell "$SHELL"
+
+# ~/.tmux.conf  ── order matters: put these two lines TOGETHER
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-battery'
+
+set -g @tb_icon_full        "󱟢"
+set -g @tb_icon_three_quarter "󰂀"
+set -g @tb_icon_half        "󰁾"
+set -g @tb_icon_quarter     "󰁻"
+set -g @tb_icon_empty       "󰂃"
+set -g @plugin 'kechol/tmux-git-status'
+
+set -g status-position top
+
+# set -g @plugin 'dracula/tmux'
+# set -g @dracula-show-powerline true
+
+# set -g @dracula-show-empty-plugins true
+# set -g @dracula-show-fahrenheit false
+# set -g @dracula-fixed-location "Seongnam-Si"
+# set -g @dracula-show-flags true
+# set -g @dracula-show-left-icon session
+
+
+# set -g @dracula-plugins "battery custom:sep.sh time custom:sep.sh weather"
+# set -g @dracula-weather-colors  'gray dark_gray'
+# set -g @dracula-battery-colors  'gray dark_gray'
+
+# # set -g @dracula-custom-plugin-colors "gray dark_gray"
+# set -g @dracula-colors " navy='#21295c'"
+# set -g @dracula-weather-colors "navy white"
+# set -g @dracula-battery-colors "dark_gray white"
+# set -g @dracula-battery-label "⚡️"
+# set -g @dracula-custom-plugin-colors "gray white"
+# set -g @dracula-git-disable-status true
+# set -g @dracula-military-time true
+
+#+--------+
+#+ Status +
+#+--------+
+#+--- Bars ---+
+#####  Custom palette  ####################################
+# Basalt (b1–b4)
+set -g @b1 '#181B23'   # Basalt Indigo
+set -g @b2 '#1C2228'   # Basalt Teal
+set -g @b3 '#20232B'   # Basalt Violet
+set -g @b4 '#262A30'   # Basalt Ember
+
+# Sea (s1–s4)
+set -g @s1 '#285A6B'   # Sea Midnight
+set -g @s2 '#3E7C8F'   # Sea Deep
+set -g @s3 '#5C9FB2'   # Sea Shoal
+set -g @s4 '#7BBBD0'   # Sea Foam
+
+# Camellia (c1–c4)
+set -g @c1 '#A04C62'   # Camellia Core
+set -g @c2 '#B6677C'   # Camellia Bloom
+set -g @c3 '#CF8899'   # Camellia Light
+set -g @c4 '#E3A6B7'   # Camellia Mist
+
+# Hallabong (h1–h4)
+set -g @h1 '#C45A26'   # Hallabong Peel
+set -g @h2 '#D87237'   # Hallabong Flesh
+set -g @h3 '#E88C4C'   # Hallabong Glow
+set -g @h4 '#F7A967'   # Hallabong Star
+
+# Moss (m1–m2)
+set -g @m1 '#467159'   # Moss Fern
+set -g @m2 '#54846B'   # Tea Leaf
+
+# Lavender (l1–l2)
+set -g @l1 '#9F7EB5'   # Sunset Lavender
+set -g @l2 '#B2A5D0'   # Dawn Haze
+
+set -g pane-active-border-style "bg=default fg=#E3A6B7"
+
+set -g @tbg '#14191f'
+###########################################################
+# #16171a
+
+
+set -g status-bg '#14191f'
+set -g status-fg '#ffffff'
+
+# set -g @lc '#467159'
+
+set status-left-length 20
+set -g status-left "#[fg=#ffffff,bg=#{@lc}]   #S #[fg=#000000]#[fg=#{@lc},bg=#{@tbg},nobold,noitalics,nounderscore]#[fg=#ffffff, bg=#{@tbg}]     "
+set -g status-right "#[fg=#000000, bg=#{@tbg}]#[fg=#ffffff, bg=#000000] %H:%M   #[fg=#000000, bg=#{@tbg}]  "
+
+#+--- Windows ---+
+set -g window-status-format " #[fg=#ffffff,bg=#{@tbg},nobold,noitalics,nounderscore]#W "
+set -g window-status-current-format "#[fg=#{@l1},bg=#{@tbg},nobold,noitalics,nounderscore]#[fg=#ffffff,bg=#{@l1}] #W #[fg=#{@l1},bg=#{@tbg},nobold,noitalics,nounderscore]"
+set -g window-status-separator "   "
+
+set -g mouse on
+
+# Pass wheel/mouse to the program when it's in the alternate screen (Emacs/Vim/Nvim/etc.)
+bind -n WheelUpPane   if -F "#{alternate_on}" "send-keys -M" "copy-mode -e; send -M"
+bind -n WheelDownPane if -F "#{alternate_on}" "send-keys -M" "send -M"
+bind -n MouseDragEnd1Pane if -F "#{alternate_on}" "send-keys -M" "send -M"
+
+
+set -g @plugin 'omerxx/tmux-floax'
+set -g @floax-text-color '#ffffff'
+set -g @floax-border-color '#B2A5D0'
+set -g @floax-bind-menu 'P'
+set -g @floax-title 'floating'
+
+run "~/.tmux/plugins/tpm/tpm"

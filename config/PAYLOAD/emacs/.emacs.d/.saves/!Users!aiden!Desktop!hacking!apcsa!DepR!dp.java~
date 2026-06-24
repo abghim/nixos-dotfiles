@@ -1,0 +1,30 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class dp {
+    public static double d(int nw, int w) {
+	return (double) nw /w;
+    }
+
+    public static void main(String[] args) {
+	ArrayList<Integer> pl = new ArrayList<Integer>();
+	int wk = 0, nw = 0;
+
+	Scanner scn = new Scanner(System.in);
+	int ip;
+
+	double dr;
+
+	while ((ip=scn.nextInt())!=6767) {
+	    System.out.print("[6767 to quit] (age)");
+	    pl.add(ip);
+	    if (ip>64 || ip<15) nw++;
+	    else wk++;
+	} System.out.println("Dependency ratio: "+(dr=d(nw, wk)));
+
+	if (dr<50) System.out.println("Nice.");
+	else if (dr<70) System.out.println("Not bad.");
+	else System.out.println("Doom.");
+	
+    }
+}

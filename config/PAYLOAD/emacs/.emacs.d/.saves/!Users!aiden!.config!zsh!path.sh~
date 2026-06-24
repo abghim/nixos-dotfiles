@@ -1,0 +1,1 @@
+export PATH="$PATH:$HOME/bin:/opt/homebrew/bin:/Users/aiden/Library/Python/3.10/bin:/Users/aiden/.local/bin:/opt/homebrew/opt/coreutils/libexec/gnubin"

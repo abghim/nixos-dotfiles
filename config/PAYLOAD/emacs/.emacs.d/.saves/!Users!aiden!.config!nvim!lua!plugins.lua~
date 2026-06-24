@@ -1,0 +1,219 @@
+return {
+{
+    "norcalli/nvim-colorizer.lua",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("colorizer").setup({
+        -- Enable for all filetypes by default:
+        "*",
+
+        -- Or restrict/override per filetype:
+        -- css = { rgb_fn = true },
+        -- html = { names = true },
+      }, {
+        -- Global options:
+        RGB      = true,   -- #RGB hex codes
+        RRGGBB   = true,   -- #RRGGBB hex codes
+        RRGGBBAA = true,   -- #RRGGBBAA hex codes
+        AARRGGBB = true,   -- 0xAARRGGBB hex codes
+        rgb_fn   = true,   -- CSS rgb() / rgba()
+        hsl_fn   = true,   -- CSS hsl() / hsla()
+        names    = false,  -- "Blue", "red", etc.
+        css      = true,   -- Enable all CSS features
+        css_fn   = true,   -- Enable CSS functions
+        mode     = "background", -- "background" | "foreground" | "virtualtext"
+        virtualtext = "■",
+      })
+    end,
+  },
+{
+  "nvim-mini/mini.starter",
+  event = "VimEnter",
+  config = function()
+    local starter = require("mini.starter")
+    starter.setup({
+      header = [=[
+           __
+.-.__      \ .-.  ___  __
+|_|  '--.-.-(   \/\;;\_\.-._______.-.
+(-)___     \ \ .-\ \;;\(   \       \ \
+ Y    '---._\_((Q)) \;;\\ .-\     __(_)
+ I           __'-' / .--.((Q))---'    \,
+ I     ___.-:    \|  |   \'-'_          \
+ A  .-'      \ .-.\   \   \ \ '--.__     '\
+ |  |____.----((Q))\   \__|--\_      \     '
+    ( )        '-'  \_  :  \-' '--.___\
+     Y                \  \  \       \(_)
+     I                 \  \  \         \,
+     I                  \  \  \          \
+     A                   \  \  \          '\
+     |              snd   \  \__|           '
+                           \_:.  \
+                             \ \  \
+                              \ \  \
+                               \_\_|
+	  ]=],
+      items = {
+		starter.sections.builtin_actions(),
+		starter.sections.recent_files(5, true),
+	  },
+      footer = "",
+    })
+  end,
+}
+
+
+,
+
+  {
+    "j-hui/fidget.nvim",
+    event = "LspAttach",
+    opts = {},
+  },
+
+    {
+    	"nvim-tree/nvim-tree.lua",
+	     version = "*",
+		dependencies = "nvim-tree/nvim-web-devicons",
+	     config = function()
+	     	require("nvim-tree").setup()
+		end,
+      keys = {
+            { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle outline" },
+        },
+    },
+
+    -- ─────────────────────────────────────────────────── buffer / tab bar
+    -- {
+    --     "akinsho/bufferline.nvim",
+    --     version = "*",
+    --     dependencies = "nvim-tree/nvim-web-devicons",
+    --     config = function()
+    --         require("bufferline").setup({
+    --             options = {
+    --                 mode = "buffers",
+    --                 diagnostics = "nvim_lsp",
+    --                 show_close_icon = false,
+    --                 offsets = {
+    --                     {
+    --                         filetype = "neo-tree",   -- <─ check with `:echo &filetype`
+    --                         text = "File Explorer",  -- title on the empty strip
+    --                         highlight = "Directory", -- colour group (any highlight you like)
+    --                         text_align = "center",   -- "left" | "center" | "right"
+    --                         separator = true,        -- draw a │ divider after the title
+    --                         padding = 1,             -- blank cells left & right
+    --                     },
+    --                 },
+    --             },
+    --             highlights = {
+    --                 fill = {
+    --                     bg = "#14191f"
+    --                 },
+
+    --                 background = {
+    --                     bg = "#16171a"
+    --                 },
+    --             },
+    --         })
+    --     end,
+    -- },
+
+    -- ─────────────────────────────────────────────────── syntax engine
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter.configs").setup({
+                ensure_installed = { "lua", "python", "cpp", "rust", "bash", "html", "css", "javascript", "java", "json", "toml" },
+                highlight = { enable = true },
+            })
+        end,
+    },
+
+    -- -- lua/plugins.lua  ── put this near the end
+    -- {
+    --     "hrsh7th/nvim-cmp",
+    --     dependencies = {
+    --         "hrsh7th/cmp-buffer",   -- words in open buffers
+    --         "hrsh7th/cmp-path",     -- filesystem paths
+    --         "hrsh7th/cmp-nvim-lsp", -- LSP completion  (remove if not using LSP)
+    --     },
+    --     config = function()
+    --         local cmp = require("cmp")
+    --         cmp.setup({
+    --             mapping = cmp.mapping.preset.insert({
+    --                 ["<C-Space>"] = cmp.mapping.complete(),
+    --                 ["<CR>"]      = cmp.mapping.confirm({ select = true }),
+    --                 ["<Tab>"]     = cmp.mapping.select_next_item(),
+    --                 ["<S-Tab>"]   = cmp.mapping.select_prev_item(),
+    --             }),
+    --             sources = {
+    --                 { name = "nvim_lsp" }, -- comment out if no LSP
+    --                 { name = "buffer" },
+    --                 { name = "path" },
+    --             },
+    --         })
+    --     end,
+    -- },
+
+    -- ─────────────────────────── nvim-cmp core + sources ───────────────────────
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "L3MON4D3/LuaSnip", -- snippets (optional but handy)
+            "saadparwaiz1/cmp_luasnip",
+        },
+        config = function()
+            local cmp     = require("cmp")
+            local luasnip = require("luasnip")
+            require("luasnip.loaders.from_vscode").lazy_load()
+
+            cmp.setup({
+                snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
+                mapping = cmp.mapping.preset.insert({
+                    ["<C-Space>"] = cmp.mapping.complete(),
+                    ["<CR>"]      = cmp.mapping.confirm({ select = true }),
+                    ["<Tab>"]     = cmp.mapping(function(fb)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        else
+                            fb()
+                        end
+                    end, { "i", "s" }),
+                    ["<S-Tab>"]   = cmp.mapping(function(fb)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fb()
+                        end
+                    end, { "i", "s" }),
+                }),
+                sources = {
+                    { name = "nvim_lsp" },
+                    { name = "path" },
+                    { name = "buffer" },
+                    { name = "luasnip" },
+                },
+            })
+        end,
+    },
+
+    --─────────────────────────── outline sidebar (Aerial) ──────────────────────
+    {
+        "stevearc/aerial.nvim",
+        opts = {
+            backends = { "lsp", "treesitter", "markdown" }, -- lsp gives funcs/types; TS for files w/out LSP
+        },
+        keys = {
+            { "<leader>o", "<cmd>AerialToggle!<cr>", desc = "Toggle outline" },
+        },
+    },
+
+}

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+zellij a apcsa || echo "apcsa session not available"
+zsh

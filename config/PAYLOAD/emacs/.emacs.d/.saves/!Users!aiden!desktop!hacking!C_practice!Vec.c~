@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define FOR_VEC(VAR, VECPTR, BLOCK) for (VAR=0; VAR<VECPTR->len; VAR++) BLOCK
+
+typedef struct {
+  unsigned int len;
+  unsigned int capacity;
+  int *data;
+} Vec;
+
+Vec *vec_new(unsigned int);
+Vec *vec_clone(Vec *);
+void vec_print(Vec *);
+int vec_get(Vec *v, unsigned int i);
+void vec_set(Vec *v, unsigned int i, int to);
+void vec_free(Vec *v);
+
+Vec *vec_new(unsigned int l) {
+  Vec *ret = (Vec *) malloc( sizeof(Vec) );
+  ret->data = (int *) calloc(2*l, sizeof(int));
+  ret->len = l;
+  ret->capacity = 2*l;
+  return ret;
+}
+
+Vec *vec_clone(Vec *from) {
+  Vec *ret = vec_new(from->len);
+  int i;
+  FOR_VEC(i, from, {
+    vec_set(ret, i, vec_get(from, i));
+  })
+	return ret;
+}
+
+void vec_free(Vec *what)
+
+void vec_print(Vec *what) {
+  printf("[");
+  int i;
+  FOR_VEC(i, what, {
+    printf("%d, ", vec_get(what, i));
+  }) printf("]\n");
+}
+
+int vec_get(Vec *v, unsigned int i) {
+  if (i>=v->len) {
+    fprintf(stderr, "Index out of bounds\n");
+  } return v->data[i];
+}
+
+void vec_set(Vec *v, unsigned int i, int to) {
+  if (i>=v->len) {
+    fprintf(stderr, "Index out of bounds\n");
+  } v->data[i] = to;
+}
+
+void vec_push(Vec *v, int what) {
+  if (v->len < v->capacity) {
+    v->len++;
+    vec_set(v, v->len-1, what);
+  } else {
+    v->len++;
+    v->data = (int *) realloc(v->data, v->capacity*2*sizeof(int));
+    vec_set(v, v->len-1, what);
+  }
+}
+
+int main() {
+  Vec *a = vec_new(10);
+  vec_set(a, 3, 99);
+  vec_set(a, 9, 11);
+  vec_print(a);
+  vec_push(a, 12);
+  vec_push(a, 30);
+
+  vec_print(a);
+  printf("%d", a->capacity);
+}

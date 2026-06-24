@@ -1,0 +1,6 @@
+public class Main {
+    public static void main(String[] args) {
+	Logic session1 = new Logic(2.0, 4.00);
+	System.out.println(session1.status());
+
+	

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+mkdir -p "~/.config/nvim/lua/"
+
+touch "~/.config/nvim/lua/lspap_autoconf.lua"
+
+grep "require\(\"lspap_autoconf\"\)" "~/.config/nvim/init.lua"
+[[ $? -eq 0 ]] && echo "Please add the following line to init.lua"

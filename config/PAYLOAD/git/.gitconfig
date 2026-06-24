@@ -1,0 +1,19 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+    name = Aiden Ghim
+    email = aiden.bj.ghim@gmail.com
+[http]
+    version = HTTP/1.1
+[core]
+    pager = delta
+	editor = nvim
+[interactive]
+    diffFilter = delta --color-only | less -R
+[advice]
+	defaultBranchName = false
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

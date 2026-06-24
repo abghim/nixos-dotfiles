@@ -1,0 +1,6 @@
+public class StudentDriver {
+    public static void main(Strings s[]) {
+	StudentLogic Alex = new StudentLogic(3.2);
+	StudentLogic Minji = new StudentLogic(3.8);
+
+	

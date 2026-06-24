@@ -1,0 +1,17 @@
+public class selectionArray {
+    public static void main(String[] args) {
+	String[] names = {"Aiden", "Bob", "Christina", "David", "Echo", "Fox"};
+	String shortest = names[0], longest = names[0];
+	for (int k=0; k<names.length; k++) {
+	    if (names[k].length()<shortest.length()) {
+		shortest = names[k];
+	    }
+
+	    if (names[k].length()>longest.lengt()) {
+		longest = names[k];
+	    }
+	}
+
+	System.out.println(shortest + ", " + longest);
+    }
+}

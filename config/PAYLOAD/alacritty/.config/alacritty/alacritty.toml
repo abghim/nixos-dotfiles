@@ -1,0 +1,15 @@
+[font]
+size = 14.0
+
+[font.normal]
+family = "Monaco Nerd Font"
+
+[colors.primary]
+background = "#14191f"
+foreground = "#ffffff"
+
+[window]
+opacity = 1
+
+[colors]
+transparent_background_colors  = false

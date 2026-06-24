@@ -1,0 +1,29 @@
+-- Pull in the wezterm API
+local wezterm = require 'wezterm'
+
+-- This will hold the configuration.
+local config = wezterm.config_builder()
+
+-- This is where you actually apply your config choices.
+
+-- For example, changing the initial geometry for new windows:
+config.initial_cols = 120
+config.initial_rows = 28
+
+config.default_prog = { "zsh", "/Users/aiden/.config/wezterm/zellij.sh" }
+wezterm.on("gui-startup", function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
+
+-- or, changing the font size and color scheme.
+config.font_size = 19
+
+config.colors = {
+	      foreground = 'white',
+	      background = 'black'
+}
+
+config.font = wezterm.font 'Monaco Nerd Font'
+-- Finally, return the configuration to wezterm:
+return config

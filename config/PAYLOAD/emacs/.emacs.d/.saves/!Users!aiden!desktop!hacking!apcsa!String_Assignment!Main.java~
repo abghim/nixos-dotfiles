@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class Main {
+    
+    public static void main(String[] args) {
+	Scanner scn = new Scanner(System.in);
+
+	String ans, gs;
+
+	do {
+	    System.out.print("Type answer (5 letters):");
+	    ans = scn.nextLine();
+	} while (ans.length() != 5);
+	
+	
+	Game gm = new Game(ans);
+	System.out.println("\033C");
+
+	int ti;
+	for (int tn=0; tn<6; tn++) {
+	    do {
+		System.out.print("Guess (5 letters): ");
+		gs = scn.nextLine();
+	    } while (gs.length() != 5);
+
+	    int[] res = gm.guess(gs);
+	    
+
+	    for (int ri=0; ri<5; ri++) {
+		if (res[ri]==0) {
+		    System.out.print("\033[32m" + gs.charAt(ri) + "\033[0m");
+		} else if (res[ri]==1) {
+		    System.out.print("\033[33m" + gs.charAt(ri) + "\033[0m");
+		} else {
+		    System.out.print(gs.charAt(ri));
+		}
+
+
+
+	    } System.out.print("\n");
+	    			    
+       	if (gm.win(gs)) {
+	        String pr = "";
+	        switch (tn) {
+	        case 0: pr="Genius"; break;
+		case 1: pr="Magnifcent"; break;
+		case 2: pr="Impressive"; break;
+		case 3: pr="Splendid"; break;
+		case 4: pr="Great"; break;
+		case 5: pr="Phew"; break;
+		}
+		System.out.println(pr);
+		    
+	        return;
+		}
+	
+
+
+		}
+
+	System.out.println(ans);
+		
+}
+}

@@ -1,0 +1,21 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Stock {
+    public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Stocks you are investing in (BYE to quit)");
+
+    ArrayList<String> stocks = new ArrayList<String>();
+    
+    String stock = "";
+    while (!(stock=scanner.nextLine()).equals("BYE")) {
+	stocks.add(stock);
+    }
+
+    for (String s : stocks) {
+	if (s.equals("MCD") || s.equals("KO") || s.equals("META")) System.out.println(s + " is a good stock");
+	else if (s.equals("MMM") || s.equals("SIRI") || s.equals("BRC")) System.out.println(s+" is an okay stock");
+
+    }
+    }
+}

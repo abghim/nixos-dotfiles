@@ -1,0 +1,32 @@
+foreground = #ffffff
+background = #14191f
+background-opacity = 1
+
+cursor-color = #ffffff
+cursor-style-blink = false
+
+background-image = "~/.config/ghostty/assets/wallpaper_ghost_2.png"
+
+
+font-family = "MonacoLigaturized Nerd font"
+font-size   = 17
+
+window-width  = 143
+window-height = 37
+
+window-colorspace = "srgb"
+
+keybind = cmd+x=text:\x11
+
+command = zsh -ic "~/.wrap_tmux.sh"
+macos-icon = official
+macos-icon-frame = beige
+
+macos-option-as-alt = true
+
+confirm-close-surface = false
+title = " "
+
+custom-shader = "~/.config/ghostty/custom.glsl"
+
+custom-shader-animation = false

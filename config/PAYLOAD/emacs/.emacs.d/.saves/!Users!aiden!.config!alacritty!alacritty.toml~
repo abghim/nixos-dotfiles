@@ -1,0 +1,9 @@
+[font]
+size = 18.0
+normal = { family = "Monaco Nerd Font", style = "Regular"}
+
+
+[window]
+opacity = 0.86
+dimensions = { columns = 123, lines = 31}
+startup_mode = "maximized"

@@ -1,0 +1,47 @@
+import java.lang.Math;
+
+public class TreasureBoard {
+    private int size;
+    private int[][] board;
+
+    private int tcol, trow;
+
+    public TreasureBoard(int size) {
+	this.size = size;
+	this.board = new int[size][size];
+
+	tcol = (int) (Math.random()*size);
+	trow = (int) (Math.random()*size);
+
+	board[tcol][trow] = 67;
+    }
+
+    public int getSize() {
+	return size;
+    }
+
+    public boolean checkGuess(int row, int col) {
+	return (row==trow) && (col==tcol);
+    }
+
+    public void printBoard() {
+	System.out.print("+");
+	for (int i=0; i<3*(size-2); i++) {
+	    System.out.print("-");
+	} System.out.print("+\n");
+	for (int[] col:board ) {
+	    System.out.print("|");
+	    for (int cell : col) {
+		System.out.print((cell==0 ? "  ":"👑")+" ");
+	    } System.out.print("|\n");
+	}
+
+	System.out.print("+");
+	for (int i=0; i<3*(size-2)+3; i++) {
+	    System.out.print("-");
+	} System.out.print("+\n");
+
+    }
+
+    
+}

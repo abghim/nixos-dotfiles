@@ -1,0 +1,29 @@
+public class Count {
+    public static void main(String[] args) {
+	String[][] people = {
+	    {"Aiden", "Jiwoong", "Sejong"},
+	    {"Jia", "Yeojin"},
+	    {"Jiho", "Yubin"}
+	};
+
+	int count = 0;
+	int cf = 0;
+	String ln = people[0][0];
+	for (String[] ppl : people) {
+	    for (String stu : ppl) {
+		count++;
+		if (stu.length()>4) {
+		    cf++;
+		}
+		System.out.println(stu);
+
+		if (stu.length()>ln.length())
+		    ln = stu;
+		
+		
+	    }
+	}
+
+	System.out.println(count + ", " + cf + ", " +ln);
+    }
+}

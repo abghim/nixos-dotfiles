@@ -1,0 +1,39 @@
+import java.lang.Math;
+public class DogWalker {
+
+	/*
+
+	The dog walker. Has an employer and maximum number of dogs that one can handle
+	Easy.
+
+	*/
+
+
+	private int maxDogs;
+    private DogWalkCompany company;
+
+	public DogWalker(int max, DogWalkCompany comp) {
+		maxDogs = max;
+		company = comp;
+		System.out.println("Created new DogWalker: max dogs "+ maxDogs);
+	}
+
+	public int walkDogs(int hour) {
+		int avail = company.numAvailableDogs(hour);
+		int num = Math.min(maxDogs, avail);
+		company.updateDogs(hour, num);
+		System.out.println("Walking " + num + " dogs in hour " + hour);
+		return num;
+	}
+
+	public int dogWalkShift(int startHour, int endHour) {
+		int pay = 0;
+		for (int hour = startHour; hour<=endHour; hour++) {
+			pay += walkDogs(hour)*5;
+			if ((9<=hour && hour<=17)||(walkDogs(hour)==maxDogs)) {
+				pay += 3;
+			}
+		}
+		return pay;
+	}
+}

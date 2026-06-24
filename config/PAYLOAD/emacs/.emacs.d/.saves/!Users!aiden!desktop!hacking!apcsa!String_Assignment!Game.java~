@@ -1,0 +1,68 @@
+public class Game {
+    private String ans;
+    public Game(String ans) {
+	this.ans = ans;
+    }
+
+    public boolean win(String g) {
+	return ans.equals(g);
+    }
+
+    /* precondition: assume gs to have length 5 */
+    /* 0 is correct position, 1 is incorrect position, 2 is letter not in ans */
+    public int[] guess(String gs) {
+	int[] ret = new int[5];
+	char cgs, cas;
+
+	for (int ci=0; ci<5; ci++) {
+	    cgs = gs.charAt(ci);
+	    cas = ans.charAt(ci);
+	    if (cgs == cas) {
+		ret[ci]=0;
+		continue;
+	    }
+
+	    if (ans.indexOf(cgs) == -1) {
+		ret[ci]=2;
+		continue;
+	    }
+
+	    if (cqr(cgs, gs)<=0) {
+		ret[ci]=2;
+		continue;
+	    }
+
+	    if (cqr(cgs, gs)<cgqr(cgs, gs, ci)) {
+		ret[ci]=2;
+		continue;
+	    } ret[ci]=1;
+
+	    
+	}return ret;
+    }
+
+    private int cqr(char c, String gs) {
+	/* returns how many chars 'left' */
+	int cnt = 0;
+	for (int i=0; i<5; i++) {
+	    if (ans.charAt(i) == c && ans.charAt(i) != gs.charAt(i)) {
+		cnt++;
+	    }
+	} return cnt;
+    }
+
+
+    private int cgqr(char c, String gs, int idx) {
+	/* returns how many chars 'left' */
+	int cnt = 0;
+	for (int i=0; i<idx+1; i++) {
+	    if (gs.charAt(i) == c && ans.charAt(i) != gs.charAt(i)) {
+		cnt++;
+	    }
+	} return cnt;
+    }
+
+}  
+
+	    
+	

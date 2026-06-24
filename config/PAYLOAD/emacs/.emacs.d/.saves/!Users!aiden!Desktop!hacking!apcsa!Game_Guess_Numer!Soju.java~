@@ -1,0 +1,38 @@
+import java.lang.Math;
+import java.util.Scanner;
+public class Soju {
+    public static int game1(){
+		Scanner scn = new Scanner(System.in);
+		int cnt = 0;
+		int gs = 0;
+
+		int ans = 1+(int) (Math.random()*50);
+
+		while (true) {
+			cnt++;
+			gs = scn.nextInt();
+			if (gs>ans) System.out.println("DOWN!!");
+			else if (gs<ans) System.out.println("UP!!!!");
+			else break;
+		}
+
+		System.out.println(cnt + (cnt==1 ? " guess":" guesses"));
+		return cnt;
+	}
+
+    public static void main(String[] args) {
+	Scanner scn = new Scanner(System.in);
+	String pn1 = scn.nextLine();
+	String pn2 = scn.nextLine();
+	int ps1 = game1();
+	int ps2 = game2();
+
+	if (ps1>ps2) System.out.println(pn1 + " wins");
+	else if (ps1<ps2) System.out.println(pn2+" wins");
+	else System.out.println("It is a tie");
+
+	System.out.print("Diameter, in mm: ");
+	System.out.println("Pay " + Math.PI*scn.nextDouble());
+    }
+
+}

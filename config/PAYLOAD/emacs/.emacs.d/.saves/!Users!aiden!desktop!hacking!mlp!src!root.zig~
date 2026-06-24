@@ -1,0 +1,43 @@
+//! By convention, root.zig is the root source file when making a library.
+const std = @import("std");
+
+const Matrix = struct {
+    row: usize,
+    col: usize,
+    data: []f64,
+
+    pub fn get(self: Matrix, r: usize, c: usize) f64 {
+        return self.data[r * self.col + c];
+    }
+
+    pub fn set(self: Matrix, r: usize, c: usize, to: f64) !void {
+        self.data[r * self.col + c] = to;
+    }
+
+    pub fn print(self: Matrix) void {
+        for (0..self.row) |ri| {
+            for (0..self.col) |ci| {
+                std.debug.print("{}\t", .{self.get(ri, ci)});
+            }
+        }
+    }
+
+    pub fn new(r: usize, c: usize) !Matrix {
+        const alloc = std.heap.page_allocator;
+        const d = try alloc.alloc(f64, r * c);
+        @memset(d, 0);
+        return Matrix{ .row = r, .col = c, .data = d };
+    }
+};
+
+test "test matrix lib" {
+    var M: Matrix = try Matrix.new(3, 3);
+    try M.set(0, 0, 1);
+    try M.set(1, 1, 1);
+    try M.set(1, 2, 1);
+
+    M.print();
+    try std.testing.expect(M.get(0, 0) == 1);
+    try std.testing.expect(M.get(1, 2) == 1);
+    try std.testing.expect(M.get(0, 1) == 0);
+}

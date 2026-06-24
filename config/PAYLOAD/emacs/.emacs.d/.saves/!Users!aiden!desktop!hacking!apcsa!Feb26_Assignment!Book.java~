@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Book {
+
+    public static String classifyRating(String t, double rating) {
+	if (rating>=8.5) return t+" is an excellent book";
+	else if (rating>=7.0) return t+" is a good book";
+	else return t+" is a poor book";
+    }
+    
+    public static void main(String[] args) {
+	Scanner scanner = new Scanner(System.in);
+	ArrayList<String> titles = new ArrayList();
+	ArrayList<Double> ratings = new ArrayList();
+
+	System.out.println("Write book titles, line by line (STOP to quit):");
+	String input = "";
+	while (!(input=scanner.nextLine()).equals("STOP")) {
+	    titles.add(input);
+	}
+
+	System.out.println("Write the ratings of the books below:");
+
+	double rating = 0.0;
+	for (int i=0; i<titles.size(); i++) {
+	    rating = scanner.nextDouble();
+	    ratings.add(rating);
+	}
+
+	for (int j=0; j<titles.size(); j++) {
+	    System.out.println(classifyRating(titles.get(j), ratings.get(j)));
+	}
+    }
+}

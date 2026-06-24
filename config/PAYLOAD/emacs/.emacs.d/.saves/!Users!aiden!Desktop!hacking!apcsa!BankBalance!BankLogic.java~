@@ -1,0 +1,15 @@
+public class StudentLogic {
+    private double gpa;
+    public StudentLogic(double gpa) {
+	this.gpa = gpa;
+    }
+
+    public void updateGpa(double gpa) {
+	this.gpa = gpa;
+    }
+
+    public boolean isHonorRoll() {
+	return (gpa >= 3.5);
+    }
+
+}

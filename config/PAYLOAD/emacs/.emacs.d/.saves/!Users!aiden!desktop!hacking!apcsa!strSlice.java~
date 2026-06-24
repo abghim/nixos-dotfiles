@@ -1,0 +1,12 @@
+public class strSlice {
+    public static void main(String[] args) {
+	String output = "";
+	String input = "The quick brown fox jumped over the lazy dog";
+
+	for (int i=1; i=input.length(); i++) {
+	    output += input.substring(input.length()-i,input.length()-i+1);
+	}
+
+	System.out.println(output);
+    }
+}

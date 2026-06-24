@@ -1,0 +1,7 @@
+public class StudentHelper {
+    private double gpa;
+    public void setGpa(double gpa, StudentLogic student) {
+	student.updateGpa(gpa);
+    }
+}
+

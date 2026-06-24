@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class GameLogic {
+    public static int playGame(TreasureBoard t) {
+
+	int cnt = 1;
+	int rgs, cgs;
+
+	while (true) {
+
+	    System.out.println("Guess (row, col): ");
+	    rgs = bndScn(0, t.getSize()-1);
+	    cgs = bndScn(0, t.getSize()-1);
+
+	    if (t.checkGuess(rgs, cgs)) {
+		return cnt;
+	    }
+
+	    cnt++;
+	}
+	
+    }
+
+    public static int bndScn(int lb, int ub) {
+
+
+	Scanner scn = new Scanner(System.in);
+
+	int ret;
+	do {
+	    System.out.print("(number between "+lb+" and "+(ub>=0 ? ub:"infinity")+", inclusive) ");
+	    ret = scn.nextInt();
+	} while (! (lb<=ret && (ub<0 | ret<=ub)));
+
+	return ret;
+	
+    }
+}
