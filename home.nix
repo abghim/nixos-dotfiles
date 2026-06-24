@@ -49,7 +49,10 @@ in
         eza
         quickshell
         rustup
-	zoxide
+	    zoxide
+        fortune
+        lolcat
+        
     ];
 	
 }
