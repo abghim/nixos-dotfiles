@@ -36,7 +36,6 @@
 	};
 
 	networking.hostName = "airden";
-
 	networking.networkmanager.enable = true;
 
 	# Set your time zone.
@@ -45,21 +44,24 @@
 	hardware.graphics.enable = true;
 	programs.hyprland = {
 			enable = true;
-			xwayland.enable = true;
+			xwayland.enable = false;
 	};
 	
 
 
+	services.xserver.enable = false;
 	services.displayManager.ly.enable = true;
 	services.displayManager.sddm = {
 		enable = false; # true;
-		wayland.enable = true;
+		wayland.enable = false;
 	};
+
+	security.polkit.enable = true;
+
 	xdg.portal = {
 		enable = true;
 		extraPortals = with pkgs; [
-			xdg-desktop-portal-hyprland
-				xdg-desktop-portal-gtk
+			xdg-desktop-portal-gtk
 		];
 	};
 
@@ -91,10 +93,10 @@
 		git
 		hyprpaper
 		ghostty
-		kitty
 		vim 
 		wget
 		neovim
+		tmux
 	];
 
 # Some programs need SUID wrappers, can be configured further or are

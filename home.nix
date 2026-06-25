@@ -12,6 +12,7 @@ let
         quickshell = "quickshell";
 		nvim = "nvim";
 		alacritty = "alacritty";
+		tmux_helpers = "tmux_helpers";
     };
 
 in
@@ -42,6 +43,12 @@ in
             recursive = true;
     }) configs;
 
+	home.file.".tmux" = {
+		source = create_symlink "${dotfiles}/tmux/.tmux";
+		recursive = true;
+	};
+	home.file.".tmux.conf".source = create_symlink "${dotfiles}/tmux/.tmux.conf";
+
 	# fonts
 	home.file.".local/share/fonts/MonacoLigaturizedNerdFont".source = ./config/fonts/MonacoLigaturizedNerdFont;
 	home.file.".local/share/fonts/AppleColorEmoji.ttf".source = ./config/fonts/AppleColorEmoji-Linux.ttf;
@@ -66,6 +73,7 @@ in
 		fastfetch
 		thunar
 		alacritty
+		gum
 		zip unzip
     ] ++ [
 		# inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
