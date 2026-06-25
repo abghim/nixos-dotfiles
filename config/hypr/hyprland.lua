@@ -18,10 +18,10 @@ hl.monitor({
 ---- MY PROGRAMS ----
 ---------------------
 
-local terminal    = "alacritty"
+local terminal    = "ghostty"
 local fileManager = "thunar"
 local menu        = "wofi --show run"
-
+local browser = "flatpak run app.zen_browser.zen"
 
 -------------------
 ---- AUTOSTART ----
@@ -159,7 +159,7 @@ hl.animation({ leaf = "zoomFactor",    enabled = true, speed = 7,    bezier = "q
 
 hl.window_rule({
     name    = "opaque-term",
-    match   = { class = "(Alacritty|Ghostty|ghostty)" },
+    match   = { class = ".*(Alacritty|Ghostty|ghostty).*" },
     opacity = "0.89 override 0.8 override",
 })
 
@@ -231,9 +231,9 @@ local mainMod = "SUPER"
 hl.bind(mainMod .. " + Q",         hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C",         hl.dsp.window.close())
 hl.bind(mainMod .. " + M",         hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + B",         hl.dsp.exec_cmd("~/.tarball-installations/zen/zen --profile \"/home/dad/.config/zen/gsvbfl89.Default (release)/\""))
-hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("~/.tarball-installations/zen/zen --private-window"))
-hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("~/.tarball-installations/zen/zen --profile /home/dad/.config/zen/5ymnxmib.music --new-window \"https://beta.music.apple.com\""))
+hl.bind(mainMod .. " + B",         hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(browser .. " --private-window"))
+-- hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("~/.tarball-installations/zen/zen --profile /home/dad/.config/zen/5ymnxmib.music --new-window \"https://beta.music.apple.com\""))
 hl.bind(mainMod .. " + E",         hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V",         hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R",         hl.dsp.exec_cmd(menu))

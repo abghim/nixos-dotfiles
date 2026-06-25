@@ -1,6 +1,7 @@
 alias ls "eza"
 alias ll "ls -al"
 alias rm "trashutil"
+alias zen "flatpak run app.zen_browser.zen"
 
 abbr ga "git add"
 abbr gaa "git add -A"

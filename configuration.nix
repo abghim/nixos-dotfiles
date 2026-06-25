@@ -9,10 +9,31 @@
 		./hardware-configuration.nix
 	];
 
-	boot.loader.systemd-boot.enable = true;
-	boot.loader.efi.canTouchEfiVariables = true;
 
-	boot.kernelPackages = pkgs.linuxPackages_latest;
+	boot = {
+		loader = {
+			systemd-boot.enable = true;
+			efi.canTouchEfiVariables = true;
+		};
+		kernelPackages = pkgs.linuxPackages_latest;
+
+		plymouth = {
+			enable = true;
+			theme = "blahaj";
+			themePackages = [
+				pkgs.plymouth-blahaj-theme
+			];
+		};
+
+		consoleLogLevel = 0;
+		initrd.verbose = false;
+
+		kernelParams = [
+			"quiet"
+			"splash"
+			"udev.log_level=3"
+		];
+	};
 
 	networking.hostName = "airden";
 
@@ -26,29 +47,33 @@
 			enable = true;
 			xwayland.enable = true;
 	};
+	
+
+
 	services.displayManager.ly.enable = true;
 	services.displayManager.sddm = {
-			enable = false; # true;
-			wayland.enable = true;
+		enable = false; # true;
+		wayland.enable = true;
 	};
 	xdg.portal = {
-			enable = true;
-			extraPortals = with pkgs; [
-					xdg-desktop-portal-hyprland
-							xdg-desktop-portal-gtk
-			];
+		enable = true;
+		extraPortals = with pkgs; [
+			xdg-desktop-portal-hyprland
+				xdg-desktop-portal-gtk
+		];
 	};
 
-	# Enable CUPS to print documents.
+# Enable CUPS to print documents.
 	services.printing.enable = true;
+	services.flatpak.enable = true;
 
-	# Enable sound.
-	# services.pulseaudio.enable = true;
-	# OR
-	 services.pipewire = {
-		 enable = true;
-		 pulse.enable = true;
-	 };
+# Enable sound.
+# services.pulseaudio.enable = true;
+# OR
+	services.pipewire = {
+		enable = true;
+		pulse.enable = true;
+	};
 
 	programs.firefox.enable = true;
 	programs.fish.enable = true;
@@ -56,14 +81,15 @@
 	users.users.aiden = {
 		isNormalUser = true;
 		extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-		packages = with pkgs; [
+			packages = with pkgs; [
 			tree
-		];
+			];
 		shell = pkgs.fish;
 	};
 
 	environment.systemPackages = with pkgs; [
 		git
+		hyprpaper
 		ghostty
 		kitty
 		vim 
@@ -71,8 +97,8 @@
 		neovim
 	];
 
-	# Some programs need SUID wrappers, can be configured further or are
-	# started in user sessions.
+# Some programs need SUID wrappers, can be configured further or are
+# started in user sessions.
 	programs.mtr.enable = true;
 	programs.gnupg.agent = {
 		enable = true;
@@ -95,9 +121,9 @@
 		};
 	};
 
-	# List services that you want to enable:
+# List services that you want to enable:
 
-	# Enable the OpenSSH daemon.
+# Enable the OpenSSH daemon.
 	services.openssh.enable = true;
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

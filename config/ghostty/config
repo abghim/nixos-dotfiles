@@ -22,7 +22,15 @@
 font-family = "MonacoLigaturized Nerd Font"
 font-size = 16
 font-style = Regular
-# window-padding-x = 2
+
+
+cursor-style = block
+cursor-style-blink = false
+shell-integration = none
+shell-integration-features = no-cursor
+
+cursor-color = "cell-foreground"
+# window-padding-x = 2 
 #
 # # Spacing around the equals sign does not matter.
 # # All of these are identical:

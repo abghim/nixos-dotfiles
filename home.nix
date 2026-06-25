@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 let
     dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
@@ -67,5 +67,10 @@ in
 		thunar
 		alacritty
 		zip unzip
-    ];
+    ] ++ [
+		# inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+		(pkgs.writeShellScriptBin "zen" ''
+			exec flatpak run app.zen_browser.zen "$@"
+		'')
+	];
 }
