@@ -20,7 +20,7 @@ hl.monitor({
 
 local terminal    = "ghostty"
 local fileManager = "thunar"
-local menu        = "wofi --show run"
+local menu        = "vicinae toggle" -- "wofi --show run"
 local browser = "flatpak run app.zen_browser.zen"
 
 -------------------
@@ -29,8 +29,10 @@ local browser = "flatpak run app.zen_browser.zen"
 
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 hl.on("hyprland.start", function()
-    hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("awww-daemon")
     hl.exec_cmd("quickshell")
+    hl.exec_cmd("fcitx5 -d")
+    hl.exec_cmd("vicinae server")
 end)
 
 
@@ -39,8 +41,8 @@ end)
 -------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
-hl.env("XCURSOR_THEME", "macOS")
-hl.env("XCURSOR_SIZE", "34")
+-- hl.env("XCURSOR_THEME", "macOS")
+-- hl.env("XCURSOR_SIZE", "34")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -103,8 +105,8 @@ hl.config({
 
         blur = {
             enabled           = true,
-            size              = 5,
-            passes            = 1,
+            size              = 8,
+            passes            = 2,
             new_optimizations = true,
             vibrancy          = 0.1696,
         },
@@ -160,7 +162,7 @@ hl.animation({ leaf = "zoomFactor",    enabled = true, speed = 7,    bezier = "q
 hl.window_rule({
     name    = "opaque-term",
     match   = { class = ".*(Alacritty|Ghostty|ghostty).*" },
-    opacity = "0.89 override 0.8 override",
+    opacity = "0.85 override 0.8 override",
 })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
@@ -198,6 +200,9 @@ hl.config({
         kb_options = "",
         kb_rules   = "",
 
+		repeat_rate = 34;
+		repeat_delay = 300;
+
         follow_mouse = 1,
         sensitivity  = 0,
 
@@ -233,9 +238,9 @@ hl.bind(mainMod .. " + C",         hl.dsp.window.close())
 hl.bind(mainMod .. " + M",         hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + B",         hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(browser .. " --private-window"))
--- hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("~/.tarball-installations/zen/zen --profile /home/dad/.config/zen/5ymnxmib.music --new-window \"https://beta.music.apple.com\""))
 hl.bind(mainMod .. " + E",         hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V",         hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + F",         hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 hl.bind(mainMod .. " + R",         hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P",         hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + W",         hl.dsp.layout("togglesplit"))
@@ -338,4 +343,11 @@ hl.config({
         no_hardware_cursors = 1,
         hide_on_key_press   = true,
     },
+})
+
+hl.layer_rule({
+	match = { namespace = "vicinae" },
+	name = "vicinae-blur",
+	blur = true,
+	ignore_alpha = 0,
 })

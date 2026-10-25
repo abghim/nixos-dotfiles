@@ -30,6 +30,9 @@ shell-integration = none
 shell-integration-features = no-cursor
 
 cursor-color = "cell-foreground"
+custom-shader = "~/.config/ghostty/custom.glsl"
+custom-shader-animation = true
+mouse-scroll-multiplier = 0.34
 # window-padding-x = 2 
 #
 # # Spacing around the equals sign does not matter.

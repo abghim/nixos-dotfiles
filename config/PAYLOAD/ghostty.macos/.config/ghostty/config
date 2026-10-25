@@ -28,5 +28,4 @@ confirm-close-surface = false
 title = " "
 
 custom-shader = "~/.config/ghostty/custom.glsl"
-
 custom-shader-animation = false

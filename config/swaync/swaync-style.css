@@ -1,0 +1,68 @@
+* {
+	font-family: "MonacoLigaturized Nerd Font";
+	font-size: 14px;
+	font-weight: 400;
+	color: "#ccc"
+}
+
+.notification-row {
+	outline: none;
+	background: transparent;
+}
+
+.notification {
+	background: #14191f;
+	border: none;
+	border-radius: 17px;
+	margin: 7px 10px;
+	padding: 0;
+	box-shadow: none;
+}
+
+.notification.critical {
+	border: 2px solid "#f7b5c7"
+}
+
+.notification-default-action {
+	background: transparent;
+	border: none;
+}
+
+.notification-default-action {
+	background: #262a30;
+}
+
+.summary {
+	font-size: 17px;
+	color: "#ffffff";
+}
+
+.time {
+	margin-right: 12px;
+}
+
+.image {
+	margin-right: 12px;
+	border-radius: 10px;
+}
+
+.close-button {
+	background: "#262a30";
+	border: 1px solid #cccccc;
+	border-radius: 100%;
+	min-width: 24px;
+	min-height: 24px;
+	margin: 6px;
+	padding: 2px;
+}
+
+.notification-action {
+	background: "#14191f";
+	border: 1px solid "#cccccc";
+	border-radius: 8px;
+}
+.notification-action:hover {
+	background: "#262a30";
+	border: 1px solid "#eeeeee";
+	border-radius: 8px;
+}

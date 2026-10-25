@@ -1,47 +1,91 @@
 { inputs, config, pkgs, ... }:
 
 let
-    dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
-    create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
+create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
-    configs = {
-        fish = "fish";
-        ghostty = "ghostty";
-        hypr = "hypr";
-        eza = "eza";
-        quickshell = "quickshell";
-		nvim = "nvim";
-		alacritty = "alacritty";
-		tmux_helpers = "tmux_helpers";
-    };
+rocky = import ./packages/rocky-day { inherit pkgs; };
+
+configs = {
+	fish = "fish";
+	ghostty = "ghostty";
+	hypr = "hypr";
+	eza = "eza";
+	quickshell = "quickshell";
+	nvim = "nvim";
+	alacritty = "alacritty";
+};
 
 in
 {
-    home.username = "aiden";
-    home.homeDirectory = "/home/aiden";
-    programs.git = {
-        enable = true;
-        userName = "Aiden Ghim";
-        userEmail = "aiden.bj.ghim@gmail.com";
-        extraConfig = {
+	home.username = "aiden";
+	home.homeDirectory = "/home/aiden";
+	programs.git = {
+		enable = true;
+		userName = "Aiden Ghim";
+		userEmail = "aiden.bj.ghim@gmail.com";
+		extraConfig = {
 			credential.helper = "store";
-            init.defaultBranch = "master";
-            pull.rebase = true;
-        };
-    };
-    home.stateVersion = "25.05";
-    programs.bash = {
-        enable = true;
-        shellAliases = {
-            btw = "echo i use nixos, btw";
-        };
-    };
+			init.defaultBranch = "master";
+			pull.rebase = true;
+		};
+	};
+	home.stateVersion = "25.05";
+	programs.bash = {
+		enable = true;
+		shellAliases = {
+			btw = "echo i use nixos, btw";
+		};
+	};
 
-	# dotfile symlinking
-    xdg.configFile = builtins.mapAttrs (name: subpath: {
-            source = create_symlink "${dotfiles}/${subpath}";
-            recursive = true;
-    }) configs;
+	home.pointerCursor = {
+		package = pkgs.bibata-cursors;
+		name = "Bibata-Modern-Classic";
+		size = 30;
+
+		gtk.enable = true;
+		x11.enable = true;
+	};
+
+	services.swaync = {
+		enable = true;
+		style = ./config/swaync/swaync-style.css;
+		settings = {
+			positionX = "center";
+			positionY = "top";
+
+			layer = "overlay";
+			control-center-layer = "top";
+			notification-2fa-action = true; notification-inline-replies = true;
+			timeout = 10; timeout-low = 8.5; timeout-critical = 0;
+		};
+	};
+
+	systemd.user.services.wallpaper = {
+		Unit.Description = "Rocky wallpaper";
+		Service = {
+			Type = "oneshot";
+			ExecStart = "/home/aiden/nixos-dotfiles/packages/rocky-day/result/bin/rocky";
+		};
+	};
+
+	systemd.user.timers.wallpaper = {
+		Unit.Description = "Rocky wallpaper timer";
+		Timer = {
+			OnStartupSec = "10s";
+			OnUnitInactiveSec = "10s";
+			AccuracySec = "1s";
+			Unit = "wallpaper.service";
+		};
+		Install.WantedBy = [ "timers.target"];
+	};
+
+# dotfile symlinking
+	xdg.configFile = builtins.mapAttrs (name: subpath: {
+			source = create_symlink "${dotfiles}/${subpath}";
+			recursive = true;
+			}) configs;
+
 
 	home.file.".tmux" = {
 		source = create_symlink "${dotfiles}/tmux/.tmux";
@@ -49,36 +93,40 @@ in
 	};
 	home.file.".tmux.conf".source = create_symlink "${dotfiles}/tmux/.tmux.conf";
 
-	# fonts
+# fonts
 	home.file.".local/share/fonts/MonacoLigaturizedNerdFont".source = ./config/fonts/MonacoLigaturizedNerdFont;
 	home.file.".local/share/fonts/AppleColorEmoji.ttf".source = ./config/fonts/AppleColorEmoji-Linux.ttf;
 	home.file.".local/share/fonts/Helvetica".source = ./config/fonts/Helvetica;
 
-    home.packages = with pkgs; [
-        neovim
-        ripgrep
-        nil
-        nixpkgs-fmt
-        nodejs
-        gcc
-        wofi
-        eza
-        quickshell
-		coreutils
-		gnumake
-        rustup
-	    zoxide
-        fortune
-        lolcat
-		fastfetch
-		thunar
-		alacritty
-		gum
-		zip unzip
-    ] ++ [
-		# inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-		(pkgs.writeShellScriptBin "zen" ''
-			exec flatpak run app.zen_browser.zen "$@"
-		'')
-	];
+	home.packages = with pkgs; [
+		neovim tree-sitter
+		libnotify
+			ripgrep
+			nil lua-language-server qt6.qtdeclarative
+			nixpkgs-fmt
+			nodejs
+			gcc
+			eza
+			quickshell
+			coreutils
+			gnumake
+			rustup
+			zoxide
+			fortune
+			lolcat
+			fastfetch
+			thunar
+			alacritty thunderbird
+			opencode
+			bun
+			gum
+			zip unzip
+			docker docker-compose
+			vicinae
+			] ++ [
+# inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+			(pkgs.writeShellScriptBin "zen" ''
+			 exec flatpak run app.zen_browser.zen "$@"
+			 '')
+			];
 }

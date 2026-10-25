@@ -7,3 +7,6 @@ if status is-interactive
 	source ~/.config/fish/core.d/hl.fish
 	source ~/.config/fish/core.d/startup.fish
 end
+
+# opencode
+fish_add_path /home/aiden/.opencode/bin
