@@ -47,17 +47,54 @@ in
 		x11.enable = true;
 	};
 
+	gtk = {
+		enable = true;
+		iconTheme = {
+			name = "Adwaita";
+			package = pkgs.adwaita-icon-theme;
+		};
+	};
+
 	services.swaync = {
 		enable = true;
 		style = ./config/swaync/swaync-style.css;
 		settings = {
-			positionX = "center";
+			positionX = "right";
 			positionY = "top";
+			control-center-width = 510;
+			notification-window-width = 510;
+			notification-grouping = true;
+			widgets = ["mpris" "notifications" "menubar#footer"];
+			text-empty = "";
+			image-visibility = "when-available";
+			widget-config = {
+				"menubar#footer" = {
+					"buttons#footer-actions" = {
+						position = "right";
+						actions = [
+							{
+								label = "Clear All Notifications";
+								command = "swaync-client --close-all";
+							}
+							{
+								label = "Do Not Disturb";
+								type = "toggle";
+								command = "if [ \"$SWAYNC_TOGGLE_STATE\" = true ]; then swaync-client --dnd-on; else swaync-client --dnd-off; fi";
+								update-command = "swaync-client --get-dnd";
+							}
+						];
+					};
+				};
+				mpris = {
+					show-album-art = "when-available";
+					autohide = true;
+				};
+			};
 
 			layer = "overlay";
 			control-center-layer = "top";
 			notification-2fa-action = true; notification-inline-replies = true;
-			timeout = 10; timeout-low = 8.5; timeout-critical = 0;
+			timeout = 7; timeout-low = 3; timeout-critical = 0;
 		};
 	};
 
@@ -101,6 +138,7 @@ in
 	home.packages = with pkgs; [
 		neovim tree-sitter
 		libnotify
+		btop
 			ripgrep
 			nil lua-language-server qt6.qtdeclarative
 			nixpkgs-fmt
@@ -119,6 +157,7 @@ in
 			alacritty thunderbird
 			opencode
 			bun
+			slack
 			gum
 			zip unzip
 			docker docker-compose

@@ -22,6 +22,7 @@ local terminal    = "ghostty"
 local fileManager = "thunar"
 local menu        = "vicinae toggle" -- "wofi --show run"
 local browser = "flatpak run app.zen_browser.zen"
+local notif = "swaync-client -t"
 
 -------------------
 ---- AUTOSTART ----
@@ -34,6 +35,16 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("fcitx5 -d")
     hl.exec_cmd("vicinae server")
 end)
+
+hl.on("hyprland.start", function()
+    hl.exec_cmd(terminal .. "", {workspace = "1"})
+    hl.exec_cmd(browser, {workspace = "2"})
+    hl.exec_cmd("thunderbird", {workspace = "3"})
+	hl.exec_cmd("flatpak run dev.miguelrincon.Slipmat", {workspace = "8"})
+	hl.exec_cmd("flatpak run com.discordapp.Discord", {workspace = "8"})
+	hl.exec_cmd("slack", {workspace = "8"})
+end)
+
 
 
 -------------------------------
@@ -286,6 +297,8 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(notif))
+
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
@@ -348,6 +361,13 @@ hl.config({
 hl.layer_rule({
 	match = { namespace = "vicinae" },
 	name = "vicinae-blur",
+	blur = true,
+	ignore_alpha = 0,
+})
+
+hl.layer_rule({
+	match = { namespace = "^swaync-control-center$" },
+	name = "swaync-control-center-blur",
 	blur = true,
 	ignore_alpha = 0,
 })

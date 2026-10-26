@@ -2,7 +2,6 @@
 	font-family: "MonacoLigaturized Nerd Font";
 	font-size: 14px;
 	font-weight: 400;
-	color: "#ccc"
 }
 
 .notification-row {
@@ -10,59 +9,189 @@
 	background: transparent;
 }
 
-.notification {
+.notification-row .notification-background {
+	padding: 6px 12px;
+}
+
+.notification-row .notification-background .notification {
 	background: #14191f;
 	border: none;
 	border-radius: 17px;
-	margin: 7px 10px;
+	margin: 0;
 	padding: 0;
 	box-shadow: none;
 }
 
-.notification.critical {
-	border: 2px solid "#f7b5c7"
+.notification-row .notification-background .notification.critical {
+	border: 2px solid #f7b5c7;
+	border-radius: 17px;
 }
 
-.notification-default-action {
+.notification-row .notification-background .notification .notification-default-action {
 	background: transparent;
 	border: none;
+	padding: 14px 16px;
 }
 
-.notification-default-action {
+.notification-row .notification-background .notification .notification-default-action:hover {
 	background: #262a30;
 }
 
 .summary {
 	font-size: 17px;
-	color: "#ffffff";
+	color: #ffffff;
 }
 
-.time {
+.body {
+	font-size: 14px;
+	color: #cccccc;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
 	margin-right: 12px;
 }
 
-.image {
-	margin-right: 12px;
+.notification-row .notification-background .notification .notification-default-action .notification-content .image {
+	margin: 0 12px 0 0;
 	border-radius: 10px;
 }
 
 .close-button {
-	background: "#262a30";
+	background: #14191f;
 	border: 1px solid #cccccc;
 	border-radius: 100%;
-	min-width: 24px;
-	min-height: 24px;
-	margin: 6px;
-	padding: 2px;
+	min-width: 23px;
+	min-height: 23px;
+	margin: 2px;
+	padding: 0px;
 }
 
-.notification-action {
-	background: "#14191f";
-	border: 1px solid "#cccccc";
+.notification-row .notification-background .notification .notification-action > button {
+	background: #14191f;
+	border: 1px solid #cccccc;
 	border-radius: 8px;
 }
-.notification-action:hover {
-	background: "#262a30";
-	border: 1px solid "#eeeeee";
+.notification-row .notification-background .notification .notification-action > button:hover {
+	background: #262a30;
+	border: 1px solid #eeeeee;
 	border-radius: 8px;
+}
+
+.control-center {
+	background: rgba(20, 25, 31, 0.08);
+	border: none;
+	border-radius: 17px;
+	box-shadow: none;
+	color: #eeeeee;
+}
+
+.control-center .control-center-list {
+	--noti-bg-hover: transparent;
+	--noti-bg-focus: transparent;
+	--noti-bg-alpha: 0;
+	--notification-shadow: none;
+}
+
+.control-center .control-center-list,
+.control-center .notification-group,
+.control-center .notification-group:hover,
+.control-center .notification-group:focus,
+.control-center .notification-group:focus-within,
+.control-center .notification-row,
+.control-center .notification-row:hover,
+.control-center .notification-row:focus,
+.control-center .notification-row:focus-within,
+.control-center .notification-row .notification-background,
+.control-center .notification-row .notification-background .notification,
+.control-center .notification-group.collapsed .notification-row .notification,
+.control-center .notification-group.collapsed:hover .notification-row:not(:only-child) .notification,
+.control-center .notification-row .notification-background .notification .notification-default-action,
+.control-center .notification-row .notification-background .notification .notification-default-action:hover,
+.control-center .notification-row .notification-background .notification .notification-default-action:active,
+.control-center .notification-row .notification-background .notification .notification-content,
+.control-center .notification-row .notification-background .notification .notification-action,
+.control-center .notification-row .notification-background .notification .notification-action > button,
+.control-center .notification-row .notification-background .notification .notification-action > button:hover,
+.control-center .notification-row .notification-background .notification .notification-action > button:active {
+	background: transparent;
+	box-shadow: none;
+}
+
+.control-center .control-center-list-placeholder {
+	opacity: 0;
+}
+
+.widget-menubar.footer {
+	background: transparent;
+	margin: 8px 12px;
+	padding: 0;
+}
+
+.widget-menubar.footer > .menu-button-bar > .widget-menubar-container {
+	margin: 0;
+}
+
+.widget-menubar.footer .footer-actions > button {
+	background: #14191f;
+	color: #cccccc;
+	border: none;
+	border-radius: 100%;
+	box-shadow: none;
+	min-width: 40px;
+	min-height: 40px;
+	margin: 0 0 0 8px;
+	padding: 0;
+	background-size: 20px 20px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* Keep accessible names, but draw both controls with symbolic icons. */
+.widget-menubar.footer .footer-actions > button > label {
+	font-size: 0;
+	color: transparent;
+}
+
+.widget-menubar.footer .footer-actions > button:first-child {
+	background-image: -gtk-icontheme("window-close-symbolic");
+}
+
+.widget-menubar.footer .footer-actions > button:hover {
+	background-color: #262a30;
+}
+
+.widget-menubar.footer .footer-actions > button:last-child {
+	background-image: -gtk-icontheme("weather-clear-night-symbolic");
+}
+
+.widget-menubar.footer .footer-actions > button:checked {
+	background-color: #87d6ad;
+	color: #14191f;
+}
+
+.widget-mpris .widget-mpris-player {
+	margin: 8px 4px;
+	box-shadow: none;
+}
+
+.widget-mpris .mpris-overlay button {
+	color: #eeeeee;
+	border: none;
+	box-shadow: none;
+	border-radius: 100%;
+	min-width: 36px;
+	min-height: 36px;
+	padding: 4px;
+}
+
+.widget-mpris button image {
+	-gtk-icon-size: 20px;
+}
+
+.widget-mpris .mpris-overlay button:checked {
+	color: #87d6ad;
+}
+
+.widget-mpris button:disabled {
+	opacity: 0.4;
 }
