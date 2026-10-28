@@ -4,8 +4,6 @@ let
 dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
 create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
-rocky = import ./packages/rocky-day { inherit pkgs; };
-
 configs = {
 	fish = "fish";
 	ghostty = "ghostty";
@@ -138,11 +136,10 @@ in
 	home.packages = with pkgs; [
 		neovim tree-sitter
 		libnotify
-		btop
 			ripgrep
 			nil lua-language-server qt6.qtdeclarative
 			nixpkgs-fmt
-			nodejs
+			nodejs btop
 			gcc
 			eza
 			quickshell
@@ -167,5 +164,7 @@ in
 			(pkgs.writeShellScriptBin "zen" ''
 			 exec flatpak run app.zen_browser.zen "$@"
 			 '')
+			] ++ [
+				inputs.sidra.packages.${pkgs.stdenv.hostPlatform.system}.default
 			];
 }
