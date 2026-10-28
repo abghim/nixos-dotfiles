@@ -18,21 +18,22 @@
 		kernelPackages = pkgs.linuxPackages_latest;
 
 		plymouth = {
-			enable = false;
+			enable = true;
 			theme = "blahaj";
 			themePackages = [
 				pkgs.plymouth-blahaj-theme
 			];
 		};
 
-		consoleLogLevel = 0;
+		consoleLogLevel = 3;
 		initrd.verbose = false;
 
 		kernelParams = [
 			"quiet"
-			"splash"
-			"udev.log_level=3"
+			"srd.udev.log_level=3"
+			"rd.udev.log_level=3"
 		];
+		loader.timeout = 0;
 	};
 
 	networking.hostName = "airden";
