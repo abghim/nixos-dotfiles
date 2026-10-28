@@ -36,11 +36,46 @@
         "type": "indirect"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1792210252,
+        "narHash": "sha256-Mh0PUaIv4nFY+8wAGonaEh8iBzwsmdNlwjVHmFg1Biw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "09063bd1f2b36fd9fd793c36dfade7bd40a93dfc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
+        "sidra": "sidra",
         "zen-browser": "zen-browser"
+      }
+    },
+    "sidra": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1792884562,
+        "narHash": "sha256-Oo5fj3jEvziZ5PDSrhewJ2mMK2rCVfhSBMplogvG8RU=",
+        "owner": "wimpysworld",
+        "repo": "sidra",
+        "rev": "34e7eb680a02f43b64216f4ddfe97d6fc978a257",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wimpysworld",
+        "repo": "sidra",
+        "type": "github"
       }
     },
     "zen-browser": {

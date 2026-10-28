@@ -11,6 +11,7 @@
 			url = "github:youwen5/zen-browser-flake";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		sidra.url = "github:wimpysworld/sidra";
 	};
 
 	outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
