@@ -37,12 +37,13 @@ hl.on("hyprland.start", function()
 end)
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd(terminal .. "", {workspace = "1"})
-    hl.exec_cmd(browser, {workspace = "2"})
-    hl.exec_cmd("thunderbird", {workspace = "3"})
-	hl.exec_cmd("flatpak run dev.miguelrincon.Slipmat", {workspace = "8"})
-	hl.exec_cmd("flatpak run com.discordapp.Discord", {workspace = "8"})
-	hl.exec_cmd("slack", {workspace = "8"})
+    -- Inline exec rules propagate HL_EXEC_RULE_TOKEN; the table form does not in 0.55.4.
+    hl.exec_cmd("[workspace 1 silent] " .. terminal .. " -e tmux")
+    hl.exec_cmd("[workspace 2 silent] " .. browser)
+    hl.exec_cmd("[workspace 3 silent] thunderbird")
+    hl.exec_cmd("[workspace 8 silent] flatpak run dev.miguelrincon.Slipmat")
+--    hl.exec_cmd("[workspace 8 silent] flatpak run com.discordapp.Discord")
+    hl.exec_cmd("[workspace 8 silent] slack")
 end)
 
 
